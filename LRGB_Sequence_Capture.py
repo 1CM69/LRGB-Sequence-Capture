@@ -35,7 +35,7 @@ from SharpCap.UI import CaptureLimitType
 capTYPE = 0
 SCVer = float(SharpCap.GetType().Assembly.GetName().Version.Major.ToString() + '.' + SharpCap.GetType().Assembly.GetName().Version.Minor.ToString())
 
-class MyForm(Form):
+class Main(Form):
     def __init__(self):
         Form.__init__(self)
         # MAIN FORM CONSTRUCTION
@@ -374,23 +374,29 @@ class MyForm(Form):
         self.appendMessageText('')
         self.appendMessageText('*** HELP ***')
         self.appendMessageText('')
-        self.appendMessageText('1.FIRSTLY MAKE SURE THAT EACH FILTERS FOCUS OFFSET IS ADDED IN THE ASCOM FILTERWHEEL SETUP DIALOG UNLESS PARFOCAL FILTERS ARE BEING USED')
+        self.appendMessageText(' 1.FIRSTLY MAKE SURE THAT EACH FILTERS FOCUS OFFSET IS ADDED IN THE ASCOM FILTERWHEEL SETUP DIALOG UNLESS PARFOCAL FILTERS ARE BEING USED')
         self.appendMessageText('')
-        self.appendMessageText('2.MAKE SURE THAT YOUR TARGET IS IN FOCUS & THAT A TARGET NAME IS PICKED OR ENTERED IN SHARPCAP')
+        self.appendMessageText(' 2.IT IS ALSO IMPORTANT THAT THE FILTERS ARE ARRANGED IN THE FILTERWHEEL AS L,R,G & B IN POSITIONS 1,2,3 & 4 RESPECTIVELY')
         self.appendMessageText('')
-        self.appendMessageText('3.NOW TEST EACH FILTER INDIVIDUALLY ON THE TARGET MAKING A NOTE THE GAIN & EXPOSURE FOR EACH AT THE REQUIRED HISTOGRAM VALUE')
+        self.appendMessageText(' 3.MAKE SURE THAT YOUR TARGET IS IN FOCUS & THAT A TARGET NAME IS PICKED OR ENTERED IN SHARPCAP')
         self.appendMessageText('')
-        self.appendMessageText('4.START LRGB SEQUENCE CAPTURE FROM THE BUTTON ON THE TOOLBAR')
+        self.appendMessageText(' 4.START LRGB SEQUENCE CAPTURE FROM THE BUTTON ON THE TOOLBAR')
         self.appendMessageText('')
-        self.appendMessageText('5.MOVE THE EXPOSURE & GAIN SLIDERS IN SHARPCAP COLLECTED FROM STEP 3, PER FILTER & ENTER THEM IN TO LRGB SEQUENCE CAPTURE BY PRESSING THE RELEVANT [GET EXPOSURE] & [GET GAIN] BUTTONS')
+        self.appendMessageText(' 5.BEGIN BY MAKING SURE THAT FILTER [L] IS SELECTED IN YOUR FILTERWHEEL USING THE SHARPCAP FILTERWHEEL INTERFACE')
         self.appendMessageText('')
-        self.appendMessageText('6.CHOOSE BEWTWEEN EITHER A TIMELIMITED OR FRAMELIMITED CAPTURE SEQUENCE BY SELECTING THE OPTION ON LRGB SEQUENCE CAPTURE')
+        self.appendMessageText(' 6.NOW USE THE EXPOSURE & GAIN SLIDERS IN SHARPCAP TO GET THE TARGET AT THE CORRECT SETTINGS FOR CAPTURE, CHECK HISTOGRAM IF REQUIRED')
         self.appendMessageText('')
-        self.appendMessageText('7.ENTER A VALUE FOR THE TIMELIMIT OR FRAMELIMIT')
+        self.appendMessageText(' 7.ONCE THE REQUIRED EXPOSURE & GAIN ARE FOUND PRESS THE [Get LUM Exposure] & [Get LUM Gain] BUTTONS ON LRGB SEQUENCE CAPTURE')
         self.appendMessageText('')
-        self.appendMessageText('8.ENTER A VALUE FOR THE NUMBER OF SEQUENCES TO CAPTURE')
+        self.appendMessageText(' 8.REPEAT STEPS 5 TO 7 BY ITERATING THROUGH THE OTHER FILTERS IN THE FILTERWHEEL & PRESSING THE CORRESPONDING [Get Exposure] & [Get Gain] BUTTONS')
         self.appendMessageText('')
-        self.appendMessageText('9.HIT THE [START CAPTURE] BUTTON & WAIT FOR THE SEQUENCE TO FINISH')
+        self.appendMessageText(' 9.CHOOSE BETWEEN EITHER A TIMELIMITED OR FRAMELIMITED CAPTURE SEQUENCE BY SELECTING THE OPTION')
+        self.appendMessageText('')
+        self.appendMessageText('10.ENTER A VALUE FOR THE TIMELIMIT (in seconds) OR FRAMELIMIT (number of frames)')
+        self.appendMessageText('')
+        self.appendMessageText('11.ENTER A VALUE FOR THE NUMBER OF SEQUENCES TO CAPTURE')
+        self.appendMessageText('')
+        self.appendMessageText('12.HIT THE [START CAPTURE] BUTTON & WAIT FOR THE SEQUENCE TO FINISH')
         self.appendMessageText('')
 
     def btnAbout_Click(self, sender, event):
@@ -677,7 +683,7 @@ class MyForm(Form):
 
 def launch_form():
     if all([SharpCap.Wheels.SelectedWheel.Connected, SharpCap.SelectedCamera]):
-        form = MyForm()
+        form = Main()
         form.StartPosition = FormStartPosition.CenterScreen
         form.Show()
     else:
