@@ -1,5 +1,6 @@
 import clr
 import time
+import winsound
 
 clr.AddReference("SharpCap")
 clr.AddReference("System")
@@ -495,6 +496,7 @@ class Main(Form):
 
     def btnSC_Click(self, sender, event):
         if not any([self.rbTFST.Checked, self.rbTFSF.Checked]):
+            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             SharpCap.ShowNotification('You Need To Choose Either The TimeLimited or FrameLimited Option.')
             MessageBox.Show('You Need To Choose Either The TimeLimited\n\nor FrameLimited Option!', 'ACTION REQUIRED', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         else:
@@ -502,6 +504,7 @@ class Main(Form):
 
     def chk_ExpEntries(self):
         if not all([self.lblLEv.Text, self.lblREv.Text, self.lblGEv.Text, self.lblBEv.Text]):
+            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             SharpCap.ShowNotification('There Are 1 Or More Missing Entries For The Exposure Values, Please Check.')
             MessageBox.Show('There Are 1 Or More Missing Entries For\n\nThe Exposure Values, Please Check!', 'ACTION REQUIRED', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         else:
@@ -509,6 +512,7 @@ class Main(Form):
 
     def chk_GainEntries(self):
         if not all([self.lblLGv.Text, self.lblRGv.Text, self.lblGGv.Text, self.lblBGv.Text]):
+            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             SharpCap.ShowNotification('There Are 1 Or More Missing Entries For The Gain Values, Please Check.')
             MessageBox.Show('There Are 1 Or More Missing Entries For\n\nThe Gain Values, Please Check!', 'ACTION REQUIRED', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
         else:
@@ -550,6 +554,7 @@ class Main(Form):
     def get_Target(self):
         tName = SharpCap.TargetName
         if tName is None:
+            winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
             SharpCap.ShowNotification('NO TARGET NAME SET!')
             self.appendMessageText('NO TARGET NAME SET!')
             MessageBox.Show('NO TARGET NAME SET!', 'ACTION REQUIRED', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
@@ -618,6 +623,7 @@ class Main(Form):
             if count != capSeq:
                 self.appendMessageText('Moving Filter Wheel To LUMINANCE Position')
             else:
+                winsound.MessageBeep(winsound.MB_OK)
                 SharpCap.ShowNotification('Capture Sequence Completed.')
                 self.appendMessageText('Capture Sequence Completed.')
                 self.appendMessageText('Moving Filter Wheel To LUMINANCE Parking Position.')
@@ -671,6 +677,7 @@ class Main(Form):
             if count != capSeq:
                 self.appendMessageText('Moving Filter Wheel To LUMINANCE Position')
             else:
+                winsound.MessageBeep(winsound.MB_OK)
                 SharpCap.ShowNotification('Capture Sequence Completed.')
                 self.appendMessageText('Capture Sequence Completed.')
                 self.appendMessageText('Moving Filter Wheel To LUMINANCE Parking Position.')
@@ -687,6 +694,7 @@ def launch_form():
         form.StartPosition = FormStartPosition.CenterScreen
         form.Show()
     else:
+        winsound.MessageBeep(winsound.MB_ICONEXCLAMATION)
         SharpCap.ShowNotification('ONE or BOTH DEVICES [Camera or FilterWheel] NOT CONNECTED')
         MessageBox.Show('ONE or BOTH DEVICES [Camera or FilterWheel] NOT CONNECTED!', 'ACTION REQUIRED', MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
 
